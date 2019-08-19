@@ -1,12 +1,36 @@
-import { Color } from '../color';
-import styled from "@emotion/styled";
-import { BaseStyle } from "./base";
+import React, { SFC } from "react";
 
-export const PrimaryButton = styled.button`
+import styled from "@emotion/styled";
+
+import { Color } from "../color";
+import { Base } from "./base";
+
+type BaseButtonProps = {
+  className?: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  disabled: boolean;
+  label: string;
+}
+
+const BaseButton: SFC<BaseButtonProps> = (props: BaseButtonProps) => {
+  return (
+    <button
+      onClick={props.onClick}
+      disabled={props.disabled}
+      className={props.className}
+    >
+      {props.label}
+    </button>
+  );
+}
+
+const BaseStyledButton = Base.withComponent(BaseButton);
+
+export const PrimaryButton = styled(BaseStyledButton)`
   background-color: ${Color.PRIMARY};
   color: ${Color.WHITE};
+  opacity: ${(props: BaseButtonProps) => { return props.disabled ? 0.65 : 1 }};
   display: inline-block;
-  padding: 6px 12px;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
@@ -24,13 +48,12 @@ export const PrimaryButton = styled.button`
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
-  ${BaseStyle};
-`
+`;
 
 export const SecondaryButton = styled(PrimaryButton)`
-          background-color: ${Color.GRAY};
-        `
+  background-color: ${Color.GRAY};
+`;
 
 export const DangerButton = styled(PrimaryButton)`
-          background-color: ${Color.RED};
-        `
+  background-color: ${Color.RED};
+`;

@@ -28,7 +28,7 @@ module.exports = env => {
                 "@babel/env",
                 "@babel/react",
                 "@babel/typescript",
-                "@emotion/babel-preset-css-prop"
+                // "@emotion/babel-preset-css-prop"
               ]
             }
           },

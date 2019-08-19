@@ -4,7 +4,11 @@ import { storiesOf } from "@storybook/react";
 
 import { OverrideTestDiv } from "../components/atom/testDiv";
 import { PrimaryButton, SecondaryButton, DangerButton } from "../components/atom/button";
-import { BootPrimaryButton } from "../components/atom/bootstrapButton";
+import { SmallTextBox, LargeTextBox, MediumTextBox } from "../components/atom/textBox";
+
+const onclick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  console.log("clicked");
+}
 
 storiesOf("TestDiv", module)
   .add("with style", () => <OverrideTestDiv>test string</OverrideTestDiv>);
@@ -14,17 +18,48 @@ storiesOf("atom", module)
     return (
       <>
         <p>
-          <PrimaryButton>button</PrimaryButton>
+          <PrimaryButton
+            disabled={false}
+            onClick={onclick}
+            label="button"
+          >
+            button
+          </PrimaryButton>
         </p>
         <p>
-          <SecondaryButton>button</SecondaryButton>
+          <SecondaryButton
+            disabled={false}
+            onClick={onclick}
+            label="button"
+          >
+            button
+          </SecondaryButton>
         </p>
         <p>
-          <DangerButton>button</DangerButton>
-        </p>
-        <p>
-          <BootPrimaryButton>button</BootPrimaryButton>
+          <DangerButton
+            disabled={false}
+            onClick={onclick}
+            label="button"
+          >
+            button
+          </DangerButton>
         </p>
       </>
-  )});
+  )})
+  .add("text", () => {
+    return (
+      <>
+        <p>
+          <SmallTextBox />
+        </p>
+        <p>
+          <MediumTextBox />
+        </p>
+        <p>
+          <LargeTextBox />
+        </p>
+      </>
+    )
+  });
   // .add("secondary button ", () => <SecondaryButton>button</SecondaryButton>);
+
